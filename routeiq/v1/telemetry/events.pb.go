@@ -237,6 +237,7 @@ type AgentEvent struct {
 	Versions     *VersionLineage        `protobuf:"bytes,14,opt,name=versions,proto3" json:"versions,omitempty"`
 	AutonomyMode AutonomyMode           `protobuf:"varint,15,opt,name=autonomy_mode,json=autonomyMode,proto3,enum=routeiq.v1.telemetry.AutonomyMode" json:"autonomy_mode,omitempty"`
 	RiskTier     RiskTier               `protobuf:"varint,16,opt,name=risk_tier,json=riskTier,proto3,enum=routeiq.v1.telemetry.RiskTier" json:"risk_tier,omitempty"`
+	SessionId    string                 `protobuf:"bytes,17,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
 	// Types that are valid to be assigned to Payload:
 	//
 	//	*AgentEvent_Task
@@ -395,6 +396,13 @@ func (x *AgentEvent) GetRiskTier() RiskTier {
 		return x.RiskTier
 	}
 	return RiskTier_RISK_TIER_UNSPECIFIED
+}
+
+func (x *AgentEvent) GetSessionId() string {
+	if x != nil {
+		return x.SessionId
+	}
+	return ""
 }
 
 func (x *AgentEvent) GetPayload() isAgentEvent_Payload {
@@ -1514,8 +1522,7 @@ const file_routeiq_v1_telemetry_events_proto_rawDesc = "" +
 	"\x11toolchain_version\x18\x05 \x01(\tR\x10toolchainVersion\x12%\n" +
 	"\x0ememory_version\x18\x06 \x01(\tR\rmemoryVersion\x12+\n" +
 	"\x11retrieval_version\x18\a \x01(\tR\x10retrievalVersion\x122\n" +
-	"\x15policy_bundle_version\x18\b \x01(\tR\x13policyBundleVersion\"\xf0\n" +
-	"\n" +
+	"\x15policy_bundle_version\x18\b \x01(\tR\x13policyBundleVersion\"\x8f\v\n" +
 	"\n" +
 	"AgentEvent\x12\x19\n" +
 	"\btrace_id\x18\x01 \x01(\fR\atraceId\x12\x17\n" +
@@ -1537,7 +1544,9 @@ const file_routeiq_v1_telemetry_events_proto_rawDesc = "" +
 	"workflowId\x12@\n" +
 	"\bversions\x18\x0e \x01(\v2$.routeiq.v1.telemetry.VersionLineageR\bversions\x12G\n" +
 	"\rautonomy_mode\x18\x0f \x01(\x0e2\".routeiq.v1.telemetry.AutonomyModeR\fautonomyMode\x12;\n" +
-	"\trisk_tier\x18\x10 \x01(\x0e2\x1e.routeiq.v1.telemetry.RiskTierR\briskTier\x125\n" +
+	"\trisk_tier\x18\x10 \x01(\x0e2\x1e.routeiq.v1.telemetry.RiskTierR\briskTier\x12\x1d\n" +
+	"\n" +
+	"session_id\x18\x11 \x01(\tR\tsessionId\x125\n" +
 	"\x04task\x18d \x01(\v2\x1f.routeiq.v1.telemetry.TaskEventH\x00R\x04task\x125\n" +
 	"\x04step\x18e \x01(\v2\x1f.routeiq.v1.telemetry.StepEventH\x00R\x04step\x12A\n" +
 	"\bdecision\x18f \x01(\v2#.routeiq.v1.telemetry.DecisionEventH\x00R\bdecision\x12B\n" +
